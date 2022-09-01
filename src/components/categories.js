@@ -18,6 +18,7 @@ function Categories(props) {
 
   useEffect(() => {
     props.loadCategory();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
   const CategoryPick = (props) => {
