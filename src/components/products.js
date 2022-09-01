@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from '@material-ui/core/';
 
 const useStyles = makeStyles({
   root: {

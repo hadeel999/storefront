@@ -18,7 +18,7 @@ function Categories(props) {
 
   useEffect(() => {
     props.loadCategory();
-  }, []);
+  },[]);
 
   const CategoryPick = (props) => {
     return (
