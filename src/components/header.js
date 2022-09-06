@@ -1,7 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import { AppBar, Toolbar, Typography, Button, Badge, withStyles } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import AddShoppingCartOutlinedIcont from '@material-ui/icons/AddShoppingCartOutlined';
+import StoreSharpIcon from '@material-ui/icons/StoreSharp';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,18 +18,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const StyledBadge = withStyles((theme) => ({
+  badge: {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}))(Badge);
+
 function Header() {
+  const state = useSelector((state) => state);
   const classes = useStyles();
   return (
     <>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Store Front
+            <Link to="/">
+              <Button size="large" style={{ 'color': '#f1f1f1' }}>
+                <StoreSharpIcon />
+                Store Front
+              </Button>
+            </Link>
           </Typography>
+          <Link to="/cart">
+            <Button size="large" style={{ 'color': '#f1f1f1' }}>
+              <StyledBadge badgeContent={state.cart.length} color="secondary">
+                Cart
+                <AddShoppingCartOutlinedIcont />
+              </StyledBadge>
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </>
