@@ -1,9 +1,5 @@
 # storefront
 
-## Documentation
-
-This app will show static products when choosing a category.
-
 ## UML Diagram
 
 ![](./images/lab37.PNG)
