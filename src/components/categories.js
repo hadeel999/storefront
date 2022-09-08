@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadCategory, handleCategory } from '../store/actions';
+import { getCategories, getProduct } from '../store/actions';
 import { Paper, Tabs, Tab } from '@material-ui/core';
 import './category.scss';
 
 function Categories() {
-  const state = useSelector((state) => state);
   const dispatcher = useDispatch();
-  const [value, setValue] = useState(null);
+  const state = useSelector((state) => state);
+  const [value, setValue] = useState(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-
   useEffect(() => {
-    dispatcher(loadCategory());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    dispatcher(getCategories());
+  }, [dispatcher]);
 
   const CategoryPick = () => {
     return (
@@ -47,9 +45,10 @@ function Categories() {
           {state.categories.categoryList.map((elm) => {
             return (
               <Tab
+                key={elm.name}
                 label={elm.name}
                 onClick={() => {
-                  dispatcher(handleCategory(elm.name));
+                  dispatcher(getProduct(elm.name));
                   handlePick(elm.name, elm.description);
                 }}
               />
