@@ -1,5 +1,5 @@
 const initialState = [];
-
+// eslint-disable-next-line
 const productList = [
   {
     id: 1,
@@ -21,21 +21,21 @@ const productList = [
   },
   {
     id: 3,
-    name: 'Laptop',
-    description: 'Laptop',
-    img: 'https://user-images.githubusercontent.com/103508563/188701101-063f7727-e0d2-4c63-8ff8-11ab3694c094.jpg',
-    category: 'Technology',
+    name: 'Witcher 3 Wild Hunt',
+    description: '2015 Game of the Year',
+    img: 'https://image.api.playstation.com/vulcan/img/rnd/202009/2913/TQKAd8U6hnIFQIIcz6qnFh8C.png?w=440',
+    category: 'games',
     inStock: 90,
-    price: 400,
+    price: 25,
   },
   {
     id: 4,
-    name: "Smart phone",
-    description: "smartphone",
-    img: 'https://user-images.githubusercontent.com/103508563/188701529-3c3d76b0-2513-4552-bcd9-62bf6608a60b.jpg',
-    category: 'Technology',
+    name: "Assassin's Creed Black Flag",
+    description: "Best Assassin's Creed Game",
+    img: 'https://cdn-products.eneba.com/resized-products/vqv03fmtmnvnvlolm6b5_350x200_1x-0.jpg',
+    category: 'games',
     inStock: 45,
-    price: 250,
+    price: 17,
   },
 ];
 
@@ -47,7 +47,7 @@ const productReducer = (state = initialState, action) => {
       return state;
 
     case 'SELECT_CATEGORY':
-      return productList.filter((prod) => prod.category === payload);
+      return payload.data.filter((prod) => prod.category === payload.category);
 
     default:
       return state;
