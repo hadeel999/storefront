@@ -1,9 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import { removeProduct } from '../store/actions';
+import { removeProduct, activeProduct } from '../store/actions';
 import { Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
+import { Link } from 'react-router-dom';
 import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
+import BallotOutlinedIcon from '@material-ui/icons/BallotOutlined';
 import { green } from '@material-ui/core/colors';
 import './products.scss';
 
@@ -17,13 +19,13 @@ const useStyles = makeStyles({
 });
 
 function Products() {
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.products);
   const dispatcher = useDispatch();
   const classes = useStyles();
 
   return (
     <div className="products">
-      {state.products.map((prod) => {
+      {state.map((prod) => {
         return (
           <div className="cards" key={prod.name}>
             <Card className={classes.root} key={prod.name}>
@@ -48,9 +50,12 @@ function Products() {
                   <AddShoppingCartOutlinedIcon style={{ color: green[500] }} />
                   Add
                 </Button>
-                {/* <Button size="small" color="primary">
-              Learn More
-              </Button> */}
+                <Link to="/product" onClick={() => dispatcher(activeProduct(prod))}>
+                  <Button size="small" color="primary">
+                    <BallotOutlinedIcon style={{ color: green[500] }} />
+                    Learn More
+                  </Button>
+                </Link>
               </CardActions>
             </Card>
           </div>
